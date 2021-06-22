@@ -9,7 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using SalesWebMvc.Data;
+using SalesWebMvc.Models;
+using SalesWebMvc.Repositorio;
+
 
 namespace SalesWebMvc
 {
@@ -27,9 +29,13 @@ namespace SalesWebMvc
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<SalesWebMvcContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("SalesWebMvcContext")));
-            services.AddScoped<SeedingService>();
+            var connectionStrings = Configuration.GetConnectionString("LiveRepoCn");
+            services.AddDbContext<SalesWebMvcContext>(options => options.UseSqlServer(connectionStrings));
+            //services.AddScoped<SeedingService>();
+            services.AddScoped<DepartamentRepository>();
+            services.AddScoped<SalesRecordRepository>();
+            services.AddScoped<SellerRepository>();
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +44,8 @@ namespace SalesWebMvc
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
+                
             }
             else
             {

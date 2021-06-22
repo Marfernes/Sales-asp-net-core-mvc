@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using SalesWebMvc.Models;
 
 
-namespace SalesWebMvc.Data
+namespace SalesWebMvc.Models
 {
     public class SalesWebMvcContext : DbContext
     {
@@ -18,5 +18,11 @@ namespace SalesWebMvc.Data
         public DbSet<Departament> Departament { get; set; }
         public DbSet<Seller> Seller { get; set; }
         public DbSet<SalesRecord> SalesRecord { get; set; }
+
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(connectionString: @"Server=(localdb)\mssqllocaldb;DataBase=SalesWebMvc;Integrated Security=True");
+        }
     }
 }

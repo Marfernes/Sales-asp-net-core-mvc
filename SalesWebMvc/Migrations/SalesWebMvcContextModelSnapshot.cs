@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SalesWebMvc.Data;
+using SalesWebMvc.Models;
 
 namespace SalesWebMvc.Migrations
 {
@@ -60,7 +60,7 @@ namespace SalesWebMvc.Migrations
                     b.ToTable("SalesRecord");
                 });
 
-            modelBuilder.Entity("SalesWebMvc.Models.ViewModel.Seller", b =>
+            modelBuilder.Entity("SalesWebMvc.Models.Seller", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -91,12 +91,12 @@ namespace SalesWebMvc.Migrations
 
             modelBuilder.Entity("SalesWebMvc.Models.SalesRecord", b =>
                 {
-                    b.HasOne("SalesWebMvc.Models.ViewModel.Seller", "Seller")
+                    b.HasOne("SalesWebMvc.Models.Seller", "Seller")
                         .WithMany("SalesRecords")
                         .HasForeignKey("SellerId");
                 });
 
-            modelBuilder.Entity("SalesWebMvc.Models.ViewModel.Seller", b =>
+            modelBuilder.Entity("SalesWebMvc.Models.Seller", b =>
                 {
                     b.HasOne("SalesWebMvc.Models.Departament", "Departament")
                         .WithMany("Sellers")

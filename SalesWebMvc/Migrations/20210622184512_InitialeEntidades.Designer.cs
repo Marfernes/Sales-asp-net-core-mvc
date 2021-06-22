@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SalesWebMvc.Data;
+using SalesWebMvc.Models;
 
 namespace SalesWebMvc.Migrations
 {
     [DbContext(typeof(SalesWebMvcContext))]
-    [Migration("20210621172921_OtherEntities")]
-    partial class OtherEntities
+    [Migration("20210622184512_InitialeEntidades")]
+    partial class InitialeEntidades
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -62,7 +62,7 @@ namespace SalesWebMvc.Migrations
                     b.ToTable("SalesRecord");
                 });
 
-            modelBuilder.Entity("SalesWebMvc.Models.ViewModel.Seller", b =>
+            modelBuilder.Entity("SalesWebMvc.Models.Seller", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -93,12 +93,12 @@ namespace SalesWebMvc.Migrations
 
             modelBuilder.Entity("SalesWebMvc.Models.SalesRecord", b =>
                 {
-                    b.HasOne("SalesWebMvc.Models.ViewModel.Seller", "Seller")
+                    b.HasOne("SalesWebMvc.Models.Seller", "Seller")
                         .WithMany("SalesRecords")
                         .HasForeignKey("SellerId");
                 });
 
-            modelBuilder.Entity("SalesWebMvc.Models.ViewModel.Seller", b =>
+            modelBuilder.Entity("SalesWebMvc.Models.Seller", b =>
                 {
                     b.HasOne("SalesWebMvc.Models.Departament", "Departament")
                         .WithMany("Sellers")
