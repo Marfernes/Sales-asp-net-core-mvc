@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SalesWebMvc.Models;
 using SalesWebMvc.Repositorio;
-
+using SalesWebMvc.Services;
 
 namespace SalesWebMvc
 {
@@ -31,7 +31,9 @@ namespace SalesWebMvc
 
             var connectionStrings = Configuration.GetConnectionString("LiveRepoCn");
             services.AddDbContext<SalesWebMvcContext>(options => options.UseSqlServer(connectionStrings));
-            //services.AddScoped<SeedingService>();
+
+            services.AddScoped<SellersServices>();
+
             services.AddScoped<DepartamentRepository>();
             services.AddScoped<SalesRecordRepository>();
             services.AddScoped<SellerRepository>();
