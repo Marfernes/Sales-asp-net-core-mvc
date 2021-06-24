@@ -33,6 +33,8 @@ namespace SalesWebMvc
             services.AddDbContext<SalesWebMvcContext>(options => options.UseSqlServer(connectionStrings));
 
             services.AddScoped<SellersServices>();
+            services.AddScoped<DepartamentServices>();
+
 
             services.AddScoped<DepartamentRepository>();
             services.AddScoped<SalesRecordRepository>();

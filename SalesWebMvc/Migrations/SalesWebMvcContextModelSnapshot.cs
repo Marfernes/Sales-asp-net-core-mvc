@@ -73,7 +73,7 @@ namespace SalesWebMvc.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DepartamentId")
+                    b.Property<int>("DepartamentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -100,7 +100,9 @@ namespace SalesWebMvc.Migrations
                 {
                     b.HasOne("SalesWebMvc.Models.Departament", "Departament")
                         .WithMany("Sellers")
-                        .HasForeignKey("DepartamentId");
+                        .HasForeignKey("DepartamentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
